@@ -2,7 +2,6 @@ from datetime import datetime
 import csv
 import pandas as pd
 import numpy as np
-import openpyxl
 
 class Utils():
     def format_date(self, dataNascimento):
