@@ -1,4 +1,4 @@
-# :seedling: **Desafio Frexco**
+# :leaves: **Desafio Frexco**
 
 ### Desafio para o processo seletivo da Frexco
 
