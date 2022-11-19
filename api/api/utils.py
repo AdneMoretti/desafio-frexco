@@ -1,29 +1,34 @@
-from datetime import datetime
+from datetime import date
 import csv
 import pandas as pd
 import numpy as np
+import json
+
 
 class Utils():
     def format_date(self, dataNascimento):
-        dia, mes, ano = dataNascimento.split('/')
-        data = datetime(int(ano), int(mes), int(dia))
+        day, month, year = dataNascimento.split('/')
+        data = date(int(year), int(month), int(day))
         return data
 
-    def write_csv(data):
-        keys = data[0].keys()
 
-        with open('data.csv', 'w', newline='') as output:
-            dict_writer = csv.DictWriter(output, keys)
-            dict_writer.writeheader()
-            print(dict_writer.writerows(data))
+    def write_csv(data):
+        if(len(data)>0):
+            keys = data[0].keys()
+            with open('data.csv', 'w', newline='') as output:
+                csv_writer = csv.DictWriter(output, keys)
+                csv_writer.writeheader()
+                csv_writer.writerows(data)
             
 
     def write_xsls(data):
-        df_new = pd.read_csv('data.csv') 
-        print(df_new)
-        GFG = pd.ExcelWriter('data.xlsx') 
-        data.to_excel(GFG, index = False) 
-        
-        GFG.save() 
+        data_csv = pd.read_csv('data.csv') 
+        excel_writer = pd.ExcelWriter('data.xlsx') 
+        data_csv.to_excel(excel_writer, index = False) 
+        excel_writer.save() 
 
+    
+    def write_json(data):
+        with open("data.json", "w") as outfile: 
+            json.dump(data, outfile , indent=4)
 
